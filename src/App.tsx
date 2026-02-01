@@ -7,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ImageUploader from '@/components/ImageUploader';
 import type { ImageItem, TextOverlay, Slide, PostCategory } from '@/types';
-import { CANVAS_SIZES, POST_CATEGORIES, DEFAULT_TEXT_PRESETS } from '@/types';
+import { CANVAS_SIZES, POST_CATEGORIES, DEFAULT_TEXT_PRESETS, BRAND_COLORS, BRAND_FONTS } from '@/types';
 import {
   Download,
   Moon,
@@ -29,16 +29,16 @@ import './index.css';
 // Generate unique IDs
 const generateId = () => Math.random().toString(36).substr(2, 9);
 
-// Logo component using Konva
+// Logo component using Konva with Brand Colors
 const LogoElement: React.FC<{ x: number; y: number; scale?: number }> = ({ x, y, scale = 1 }) => {
   return (
     <Group x={x} y={y} scaleX={scale} scaleY={scale}>
       {/* Envelope icon */}
       <Rect x={0} y={20} width={60} height={45} fill="#f4d03f" cornerRadius={3} />
       <Line points={[0, 20, 30, 45, 60, 20]} stroke="#e5be35" strokeWidth={2} />
-      {/* Text */}
-      <Text x={70} y={0} text="Glücks-" fontSize={42} fontFamily="Arial" fontStyle="bold" fill="#9333ea" />
-      <Text x={0} y={50} text="streunerpost" fontSize={42} fontFamily="Arial" fontStyle="bold" fill="#9333ea" />
+      {/* Text - using Brand Lila */}
+      <Text x={70} y={0} text="Glücks-" fontSize={42} fontFamily={BRAND_FONTS.headline} fontStyle="normal" fill={BRAND_COLORS.lila} />
+      <Text x={0} y={50} text="streunerpost" fontSize={42} fontFamily={BRAND_FONTS.headline} fontStyle="normal" fill={BRAND_COLORS.lila} />
     </Group>
   );
 };
@@ -258,7 +258,7 @@ const DraggableTextLabel: React.FC<{
   );
 };
 
-// Animal Name with fancy style (like "Macy" in the images)
+// Animal Name with fancy style (like "Macy" in the images) - using Chewy font + Brand Lila
 const AnimalNameText: React.FC<{
   name: string;
   x: number;
@@ -289,26 +289,26 @@ const AnimalNameText: React.FC<{
         onTap={onSelect}
         onDragEnd={(e) => onChange(e.target.x(), e.target.y())}
       >
-        {/* Shadow/outline */}
+        {/* Shadow/outline - Brand Lila darker */}
         <Text
           x={3}
           y={3}
           text={name}
           fontSize={fontSize}
-          fontFamily="Georgia, serif"
-          fontStyle="bold italic"
-          fill="#9333ea"
+          fontFamily={BRAND_FONTS.headline}
+          fontStyle="normal"
+          fill="#5a0854"
         />
-        {/* Main text */}
+        {/* Main text - Brand Lila with outline */}
         <Text
           x={0}
           y={0}
           text={name}
           fontSize={fontSize}
-          fontFamily="Georgia, serif"
-          fontStyle="bold italic"
-          fill="#ec4899"
-          stroke="#9333ea"
+          fontFamily={BRAND_FONTS.headline}
+          fontStyle="normal"
+          fill={BRAND_COLORS.lila}
+          stroke="#5a0854"
           strokeWidth={2}
         />
       </Group>
@@ -317,7 +317,7 @@ const AnimalNameText: React.FC<{
   );
 };
 
-// Story Text Box (white rounded box with text)
+// Story Text Box (white rounded box with text) - using Raleway font
 const StoryTextBox: React.FC<{
   text: string;
   x: number;
@@ -365,7 +365,7 @@ const StoryTextBox: React.FC<{
           y={padding}
           text={text}
           fontSize={24}
-          fontFamily="Arial"
+          fontFamily={BRAND_FONTS.body}
           fill="#374151"
           width={width - padding * 2}
           align="center"
@@ -417,7 +417,7 @@ function App() {
     return () => window.removeEventListener('resize', updateScale);
   }, [canvasSize]);
 
-  // Initialize slides when category is selected
+  // Initialize slides when category is selected - using Brand Colors
   const initializeProject = useCallback((category: PostCategory) => {
     setSelectedCategory(category);
     const initialSlides: Slide[] = [
@@ -426,8 +426,8 @@ function App() {
         type: 'start',
         images: [],
         textOverlays: [
-          { id: generateId(), text: 'früher', x: 80, y: 130, fontSize: 28, fontFamily: 'Arial', fill: '#ffffff', backgroundColor: '#9333ea', padding: 12, rotation: 0 },
-          { id: generateId(), text: 'jetzt', x: 560, y: 310, fontSize: 28, fontFamily: 'Arial', fill: '#ffffff', backgroundColor: '#9333ea', padding: 12, rotation: 0 },
+          { id: generateId(), text: 'früher', x: 80, y: 130, fontSize: 28, fontFamily: BRAND_FONTS.body, fill: '#ffffff', backgroundColor: BRAND_COLORS.lila, padding: 12, rotation: 0 },
+          { id: generateId(), text: 'jetzt', x: 560, y: 310, fontSize: 28, fontFamily: BRAND_FONTS.body, fill: '#ffffff', backgroundColor: BRAND_COLORS.lila, padding: 12, rotation: 0 },
         ],
         decorations: [],
         backgroundColor: category.defaultColors.background,
@@ -437,7 +437,7 @@ function App() {
     setCurrentSlideIndex(0);
   }, []);
 
-  // Add new slide
+  // Add new slide - using Brand Colors
   const addSlide = useCallback((type: 'content' | 'end') => {
     if (!selectedCategory) return;
 
@@ -446,7 +446,7 @@ function App() {
       type,
       images: [],
       textOverlays: type === 'content'
-        ? [{ id: generateId(), text: 'jetzt', x: 100, y: 50, fontSize: 24, fontFamily: 'Arial', fill: '#ffffff', backgroundColor: '#9333ea', padding: 10, rotation: 0 }]
+        ? [{ id: generateId(), text: 'jetzt', x: 100, y: 50, fontSize: 24, fontFamily: BRAND_FONTS.body, fill: '#ffffff', backgroundColor: BRAND_COLORS.lila, padding: 10, rotation: 0 }]
         : [],
       decorations: [],
       backgroundColor: selectedCategory.defaultColors.background,
@@ -544,7 +544,7 @@ function App() {
     if (selectedId === id) setSelectedId(null);
   }, [currentSlideIndex, selectedId]);
 
-  // Add text overlay
+  // Add text overlay - using Brand Colors + Fonts
   const handleAddText = useCallback((preset?: { label: string; backgroundColor: string; fill: string }) => {
     const newText: TextOverlay = {
       id: generateId(),
@@ -552,9 +552,9 @@ function App() {
       x: 100,
       y: 100,
       fontSize: 28,
-      fontFamily: 'Arial',
+      fontFamily: BRAND_FONTS.body,
       fill: preset?.fill || '#ffffff',
-      backgroundColor: preset?.backgroundColor || '#9333ea',
+      backgroundColor: preset?.backgroundColor || BRAND_COLORS.lila,
       padding: 12,
       rotation: 0,
     };
@@ -850,7 +850,7 @@ function App() {
               </CardContent>
             </Card>
 
-            {/* Background */}
+            {/* Background - Brand Colors first */}
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm flex items-center gap-2">
@@ -860,7 +860,7 @@ function App() {
               </CardHeader>
               <CardContent>
                 <div className="flex gap-2 flex-wrap">
-                  {['#bef264', '#fcd34d', '#f9a8d4', '#93c5fd', '#c4b5fd', '#ffffff', '#1f2937'].map(color => (
+                  {[BRAND_COLORS.gruen, BRAND_COLORS.lila, '#ffffff', '#fef3c7', '#fecaca', '#e0e7ff', '#1f2937'].map(color => (
                     <button
                       key={color}
                       onClick={() => handleBackgroundChange(color)}
@@ -942,14 +942,14 @@ function App() {
                           />
                         )}
 
-                        {/* Since text */}
+                        {/* Since text - using Raleway */}
                         {animalSince && currentSlide.type === 'start' && (
                           <Text
                             x={680}
                             y={50}
                             text={`Glücksstreuner\nseit ${animalSince}`}
                             fontSize={22}
-                            fontFamily="Arial"
+                            fontFamily={BRAND_FONTS.body}
                             fill="#6b7280"
                             align="center"
                           />
@@ -994,7 +994,7 @@ function App() {
                               y={130}
                               text={currentSlide.storyText || ''}
                               fontSize={24}
-                              fontFamily="Georgia"
+                              fontFamily={BRAND_FONTS.body}
                               fontStyle="italic"
                               fill="#374151"
                               align="center"
@@ -1005,9 +1005,9 @@ function App() {
                               x={540}
                               y={1000}
                               text="Danke!"
-                              fontSize={36}
-                              fontFamily="Arial"
-                              fontStyle="bold"
+                              fontSize={42}
+                              fontFamily={BRAND_FONTS.headline}
+                              fontStyle="normal"
                               fill="#ffffff"
                               align="center"
                               offsetX={50}

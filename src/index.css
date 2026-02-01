@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Raleway:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,42 +12,46 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --primary: 302 87% 27%; /* #820B79 Lila */
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
+    --secondary: 68 61% 63%; /* #CDDB62 Grün */
     --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
+    --muted: 68 40% 90%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
+    --accent: 68 61% 63%; /* Grün */
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 302 87% 27%; /* Lila */
     --radius: 0.75rem;
+
+    /* Brand colors */
+    --brand-lila: #820B79;
+    --brand-gruen: #CDDB62;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 270 30% 8%;
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 270 25% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 270 25% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
+    --primary: 302 87% 40%; /* Lila heller für Dark Mode */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 68 61% 50%; /* Grün */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 270 20% 20%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 68 61% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --border: 270 20% 25%;
+    --input: 270 20% 25%;
+    --ring: 302 87% 40%;
   }
 }
 
@@ -55,8 +61,37 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: 'Raleway', system-ui, -apple-system, sans-serif;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Chewy', cursive;
+  }
+}
+
+/* Utility classes for brand fonts */
+.font-headline {
+  font-family: 'Chewy', cursive;
+}
+
+.font-body {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* Brand color utilities */
+.text-brand-lila {
+  color: var(--brand-lila);
+}
+
+.text-brand-gruen {
+  color: var(--brand-gruen);
+}
+
+.bg-brand-lila {
+  background-color: var(--brand-lila);
+}
+
+.bg-brand-gruen {
+  background-color: var(--brand-gruen);
 }
 
 /* Custom scrollbar */

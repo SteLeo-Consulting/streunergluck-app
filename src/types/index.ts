@@ -110,6 +110,20 @@ export const CANVAS_SIZES: Record<string, CanvasSize> = {
   story: { width: 1080, height: 1920 },
 };
 
+// Brand Colors
+export const BRAND_COLORS = {
+  lila: '#820B79',
+  gruen: '#CDDB62',
+  white: '#ffffff',
+  dark: '#1f2937',
+};
+
+// Brand Fonts
+export const BRAND_FONTS = {
+  headline: 'Chewy, cursive',
+  body: 'Raleway, sans-serif',
+};
+
 // Post Categories
 export const POST_CATEGORIES: PostCategory[] = [
   {
@@ -118,11 +132,11 @@ export const POST_CATEGORIES: PostCategory[] = [
     description: 'Vorher/Nachher Posts für vermittelte Tiere',
     icon: '🐾',
     defaultColors: {
-      background: '#bef264', // Lime green
-      primary: '#9333ea', // Purple for labels
-      secondary: '#ec4899', // Pink for name with outline
-      text: '#1f2937', // Dark text
-      accent: '#ffffff', // White
+      background: BRAND_COLORS.gruen, // Grün als Hintergrund
+      primary: BRAND_COLORS.lila, // Lila für Labels
+      secondary: BRAND_COLORS.lila, // Lila für Name
+      text: BRAND_COLORS.dark, // Dunkler Text
+      accent: BRAND_COLORS.white, // Weiß
     },
   },
   {
@@ -131,11 +145,11 @@ export const POST_CATEGORIES: PostCategory[] = [
     description: 'Tiere die ein Zuhause suchen',
     icon: '🏠',
     defaultColors: {
-      background: '#fef3c7',
-      primary: '#f59e0b',
-      secondary: '#d97706',
-      text: '#1f2937',
-      accent: '#ffffff',
+      background: '#f5f0ff',
+      primary: BRAND_COLORS.lila,
+      secondary: BRAND_COLORS.gruen,
+      text: BRAND_COLORS.dark,
+      accent: BRAND_COLORS.white,
     },
   },
   {
@@ -145,19 +159,19 @@ export const POST_CATEGORIES: PostCategory[] = [
     icon: '❤️',
     defaultColors: {
       background: '#fecaca',
-      primary: '#dc2626',
-      secondary: '#b91c1c',
-      text: '#1f2937',
-      accent: '#ffffff',
+      primary: BRAND_COLORS.lila,
+      secondary: '#dc2626',
+      text: BRAND_COLORS.dark,
+      accent: BRAND_COLORS.white,
     },
   },
 ];
 
 export const DEFAULT_TEXT_PRESETS = [
-  { label: 'früher', backgroundColor: '#9333ea', fill: '#ffffff' },
-  { label: 'jetzt', backgroundColor: '#9333ea', fill: '#ffffff' },
+  { label: 'früher', backgroundColor: BRAND_COLORS.lila, fill: '#ffffff' },
+  { label: 'jetzt', backgroundColor: BRAND_COLORS.lila, fill: '#ffffff' },
   { label: 'vorher', backgroundColor: '#dc2626', fill: '#ffffff' },
-  { label: 'nachher', backgroundColor: '#16a34a', fill: '#ffffff' },
+  { label: 'nachher', backgroundColor: BRAND_COLORS.gruen, fill: BRAND_COLORS.dark },
 ];
 
 export const LAYOUTS = [
