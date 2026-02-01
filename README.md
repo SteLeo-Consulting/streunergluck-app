@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+# Streunerglück - Social Media Post Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ein moderner Post-Generator für Tiervermittlungs-Organisationen. Erstelle ansprechende Social Media Posts mit Drag & Drop Bildbearbeitung und Text-Overlays.
 
-Currently, two official plugins are available:
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Default-blueviolet)
+![React](https://img.shields.io/badge/React-19.2-61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Dark Mode** (standardmäßig aktiviert)
+- **Drag & Drop** Bildpositionierung mit Resize/Rotate
+- **Text-Overlays** mit Presets ("früher", "jetzt", "vorher", "nachher")
+- **Multi-Format** Support (Instagram, Facebook, Story)
+- **Flexible Layouts** (Einzelbild, Nebeneinander, Übereinander, 4er Raster)
+- **PNG Export** in voller Auflösung
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19 + TypeScript
+- Vite
+- Tailwind CSS
+- Shadcn/ui Komponenten
+- Konva für Canvas-Bearbeitung
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# Repository klonen
+git clone https://github.com/SteLeo-Consulting/streunergluck-app.git
+cd streunergluck-app
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# Dependencies installieren
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Development Server starten
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Verwendung
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Bilder hochladen**: Drag & Drop oder Klicken zum Auswählen
+2. **Layout wählen**: Einzelbild, Nebeneinander, etc.
+3. **Format wählen**: Instagram (1080×1080), Facebook (1200×630), Story (1080×1920)
+4. **Bilder anpassen**: Ziehen, Skalieren, Rotieren
+5. **Text hinzufügen**: Quick-Labels oder eigener Text
+6. **Exportieren**: Als PNG herunterladen
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Verfügbare Scripts
+
+| Script | Beschreibung |
+|--------|--------------|
+| `npm run dev` | Startet den Development Server |
+| `npm run build` | Erstellt Production Build |
+| `npm run preview` | Vorschau des Production Builds |
+| `npm run lint` | ESLint Check |
+
+## Projektstruktur
+
 ```
+streunergluck-app/
+├── src/
+│   ├── components/
+│   │   ├── ui/           # Shadcn Komponenten
+│   │   ├── ImageUploader.tsx
+│   │   ├── FormatSelector.tsx
+│   │   ├── LayoutSelector.tsx
+│   │   └── TextOverlayPanel.tsx
+│   ├── types/
+│   │   └── index.ts      # TypeScript Interfaces
+│   ├── lib/
+│   │   └── utils.ts      # Utility Funktionen
+│   ├── App.tsx           # Hauptkomponente
+│   └── index.css         # Globale Styles
+├── TEST-REPORT.md        # Testbericht
+└── package.json
+```
+
+## Screenshots
+
+Die App verwendet standardmäßig Dark Mode mit einem modernen, tierfokussierten Design.
+
+## Lizenz
+
+MIT
+
+---
+
+Made with ❤️ für Tiere in Not | Streunerglück © 2026
